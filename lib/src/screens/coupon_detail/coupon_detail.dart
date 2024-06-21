@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:async/async.dart';
 import 'package:flutter/cupertino.dart';
@@ -113,12 +114,13 @@ class StateCouponDetail extends State<CouponDetail> {
 
   @override
   Widget build(BuildContext context) {
-    const detailHeight = 280.0;
+    final detailHeight = Platform.isAndroid ? 340.0 : 300.0;
     final isRTL = context.isRTL;
     final image = widget.item?.image;
+    var paddingTop = MediaQuery.sizeOf(context).height * 0.1;
 
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
+      padding: EdgeInsets.only(left: 10, right: 10, top: paddingTop),
       child: Stack(
         children: [
           Positioned(
@@ -156,6 +158,7 @@ class StateCouponDetail extends State<CouponDetail> {
                                           .bodyMedium
                                           ?.copyWith(
                                             fontWeight: FontWeight.bold,
+                                            height: 1.2,
                                           ),
                                       textAlign: TextAlign.center,
                                     ),
@@ -192,6 +195,7 @@ class StateCouponDetail extends State<CouponDetail> {
                                         .bodyMedium
                                         ?.copyWith(
                                           fontWeight: FontWeight.bold,
+                                          height: 1.2,
                                         ),
                                     textAlign: TextAlign.center,
                                   ),

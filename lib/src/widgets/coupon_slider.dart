@@ -111,7 +111,8 @@ class StateShahCouponSlider extends State<ShahCouponSlider> {
           callback: onTapSeeAll,
         ),
         SizedBox(
-          height: 210,
+          height: 220,
+          width: MediaQuery.sizeOf(context).width,
           child: PageView(
             controller: _controller,
             children: List.generate(length, (index) {

@@ -1,6 +1,8 @@
 library shah_widgets;
 
 import 'package:flutter/material.dart';
+import 'package:shah_widgets/src/widgets/product_coupon_card.dart';
+import 'src/entities/product.dart';
 import 'src/routes/route.dart';
 import 'src/screens/list_favorite_coupon.dart';
 import 'src/widgets/coupon_slider.dart';
@@ -39,10 +41,18 @@ class ShahWidgets {
     return null;
   }
 
+  static Widget? subProductCardInfoWidget(Map value) {
+    return ProductCouponCardWidget(ShahProduct.fromJson(value));
+  }
+
   static Map<String, WidgetBuilder> routes() {
     return {
       RouteList.favoriteCoupon: (_) => const ListFavoriteCoupons(),
     };
+  }
+
+  static Map? productJson(dynamic value) {
+    return ShahProduct.fromJson(value).toJson();
   }
 }
 

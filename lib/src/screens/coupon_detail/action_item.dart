@@ -6,7 +6,7 @@ class ActionItem extends StatelessWidget {
   final IconData? icon;
   final Function()? onTap;
   final String? name;
-  final double? size;
+  final double size;
   final bool enable;
   final Color? enableColor;
   const ActionItem({super.key, 
@@ -24,8 +24,10 @@ class ActionItem extends StatelessWidget {
         enable ? enableColor : Theme.of(context).colorScheme.surface;
     var iconColor = enable ? Colors.white : HexColor.fromHEX('#4de66d');
 
-    return SizedBox(
-      width: size,
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minWidth: size,
+      ),
       child: Column(
         children: [
           InkWell(
@@ -34,7 +36,7 @@ class ActionItem extends StatelessWidget {
               width: size,
               height: size,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular((size ?? 50) / 2),
+                  borderRadius: BorderRadius.circular(size / 2),
                   color: background,
                   boxShadow: [
                     BoxShadow(
@@ -55,7 +57,7 @@ class ActionItem extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          Text('$name'),
+          Text('$name', maxLines: 1),
         ],
       ),
     );

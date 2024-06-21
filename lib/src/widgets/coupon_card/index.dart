@@ -9,7 +9,13 @@ import 'painter.dart';
 
 class CouponCard extends StatelessWidget {
   final ShahCoupon? item;
-  const CouponCard({super.key, this.item});
+  final double height;
+
+  const CouponCard({
+    super.key,
+    this.item,
+    this.height = 220,
+  });
 
   void onTap(BuildContext context) {
     showDialog(
@@ -23,9 +29,13 @@ class CouponCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final image = item?.image;
+    var rightWidth = MediaQuery.sizeOf(context).width * 0.25;
+    if (rightWidth < 80.0) {
+      rightWidth = 80.0;
+    }
     if (item == null) {
-      return const Skeleton(
-        height: 210,
+      return Skeleton(
+        height: height,
         cornerRadius: 10,
       );
     }
@@ -36,18 +46,16 @@ class CouponCard extends StatelessWidget {
           color: Theme.of(context).dividerColor,
           strokeWidth: 2,
           isRTL: context.isRTL,
+          rightWidth: rightWidth,
         ),
         child: Container(
           padding: const EdgeInsets.all(10),
-          height: 210,
+          height: height,
           child: Row(
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 5,
-                  ),
+                  padding: EdgeInsets.zero,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -67,6 +75,7 @@ class CouponCard extends StatelessWidget {
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     fontWeight: FontWeight.bold,
+                                    height: 1.2,
                                   ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -103,7 +112,7 @@ class CouponCard extends StatelessWidget {
               ),
               const SizedBox(width: 50),
               Container(
-                width: 100,
+                width: rightWidth,
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: Column(
                   children: [
